@@ -13,14 +13,30 @@ export const personalInfo = {
   githubUser: "Sai7724",
   objective: "B.Tech graduate in Data Science & AI, building scalable REST APIs with Flask, FastAPI & Express and full-stack apps powered by clean, well-tested code. Currently looking for a Python/Full-Stack Dev $ AI Engineer roles.",
   stats: [
-    { label: "GPA (B.Tech)", value: "7.5 / 10" },
+    { label: "GPA (B.Tech)", value: "7.6 / 10" },
     { label: "Internships Done", value: "2" },
+    { label: "Freelancing Experience", value: "8+" },
     { label: "Core Projects", value: "4+" },
     { label: "Tech Stack Succeeded", value: "15+" }
   ]
 };
 
 export const experienceData: ExperienceItem[] = [
+  {
+    id: "exp-Freelancer",
+    role: "Freelance Software Developer",
+    company: "Self-employed",
+    period: "June 2025 - Present",
+    location: "Remote",
+    description: [
+      "Delivered end-to-end applications for independent clients across ML, full-stack web, and backend domains, owning requirements gathering, architecture, development, deployment, and handover as the sole developer.",
+      "Built ML/CV applications including detection and tracking pipelines, NLP-based text analysis, and LLM-integrated features, handling data preprocessing, model integration, and inference optimization for real-time use.",
+      "Developed REST APIs and backend services in [Python/FastAPI/Flask/Node] with [SQL/NoSQL] schema design, authentication, and third-party API integrations.",
+      "Shipped responsive web applications using [React/TypeScript/Tailwind], deploying to [Render/Vercel/Streamlit Cloud] with environment-based configuration and secrets management.",
+      "Maintained a [X]% on-time delivery rate across fixed-deadline engagements while translating non-technical requirements into working technical specifications."
+    ],
+    skills: ["Python", "TypeScript", "JavaScript", "SQL", "React", "Vite", "Tailwind CSS", "responsive design", "FastAPI", "Flask", "REST APIs", "authentication", "PostgreSQL", "Supabase", "SQLite", "MongoDB", "Git", "Docker", "Vercel", "Render", "Postman", "Linux"]
+  },
   {
     id: "exp-skyscanner",
     role: "Front-End Software Intern",
