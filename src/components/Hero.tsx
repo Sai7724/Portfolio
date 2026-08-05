@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowDown, Mail, Download, Check, Sparkles, MapPin, Terminal } from "lucide-react";
+import { Link } from "react-router-dom";
 import { personalInfo } from "../data";
 
 const profileImage = new URL("../../assets/profile.png", import.meta.url).href;
-const resumePdf = new URL("../../assets/Resume.1.pdf", import.meta.url).href;
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -138,15 +138,14 @@ export default function Hero() {
             </button>
 
             {/* Resume Download Button */}
-            <a
-              href={resumePdf}
-              download="Sai-Laxma-Reddy-Resume.pdf"
+            <Link
+              to="/download-cv"
               className="bg-[#CCFF00] text-black font-display font-bold text-base px-4 py-4 border-[4px] border-black shadow-[6px_6px_0px_#000] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-[2px_2px_0px_#000] active:translate-x-[6px] active:translate-y-[6px] active:shadow-[0px_0px_0px_#000] transition-all flex items-center gap-2 rounded-sm"
-              title="Download resume PDF"
+              title="View and download resumes"
             >
               <Download className="w-5 h-5" />
               Download CV
-            </a>
+            </Link>
 
           </motion.div>
         </div>

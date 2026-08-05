@@ -92,18 +92,28 @@ export default function Contact() {
               const tiltClass = tilts[idx % tilts.length];
               const colorClass = colors[idx % colors.length];
 
+              const innerContent = (
+                <div
+                  className={`${colorClass} ${tiltClass} border-[3px] border-black p-4 shadow-[4px_4px_0px_#000] rounded-sm hover:rotate-0 hover:scale-105 hover:shadow-[6px_6px_0px_#000] transition-all duration-200 h-full flex items-center gap-3`}
+                >
+                  <div className="bg-black text-white p-1.5 border-[2.5px] border-black shrink-0">
+                    <Award className="w-5 h-5 text-accent" />
+                  </div>
+                  <span className="font-display font-black text-xs sm:text-sm text-black leading-snug">
+                    {cert.name}
+                  </span>
+                </div>
+              );
+
               return (
                 <ScrollReveal key={idx} delay={idx * 0.05}>
-                  <div
-                    className={`${colorClass} ${tiltClass} border-[3px] border-black p-4 shadow-[4px_4px_0px_#000] rounded-sm hover:rotate-0 hover:scale-105 hover:shadow-[6px_6px_0px_#000] transition-all duration-200 h-full flex items-center gap-3`}
-                  >
-                    <div className="bg-black text-white p-1.5 border-[2.5px] border-black shrink-0">
-                      <Award className="w-5 h-5 text-accent" />
-                    </div>
-                    <span className="font-display font-black text-xs sm:text-sm text-black leading-snug">
-                      {cert.name}
-                    </span>
-                  </div>
+                  {cert.link ? (
+                    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="block h-full cursor-pointer">
+                      {innerContent}
+                    </a>
+                  ) : (
+                    innerContent
+                  )}
                 </ScrollReveal>
               );
             })}
