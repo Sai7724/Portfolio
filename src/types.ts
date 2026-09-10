@@ -14,7 +14,7 @@ export interface ProjectItem {
   description: string;
   tag: {
     label: string;
-    icon: "cpu" | "shield-alert" | "bot" | "eye";
+    icon: "cpu" | "shield-alert" | "bot" | "eye" | "brain";
     color: string;
   };
   details: string[];

@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import mammoth from "mammoth";
+import { renderAsync } from "docx-preview";
 import {
   ArrowLeft,
   Download,
@@ -21,7 +21,7 @@ interface ResumeCard {
   downloadName: string;
   accentColor: string;
   shadowColor: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   tags: string[];
 }
 
@@ -30,23 +30,23 @@ const resumes: ResumeCard[] = [
     id: "ai-engineer",
     title: "AI Engineer Resume",
     subtitle: "Machine Learning · NLP · LLMs · Agentic AI",
-    filename: "Sai_Laxma_Ai_Engineer_CV.docx",
+    filename: "SAI_LAXMA_AI_ENGINEER.docx",
     downloadName: "Sai-Laxma-Reddy-AI-Engineer-CV.docx",
     accentColor: "#FF3DCB",
     shadowColor: "#FF3DCB",
     icon: <Sparkles className="w-6 h-6" />,
-    tags: ["Python", "FastAPI", "LangChain", "PyTorch", "NLP"],
+    tags: ["Python", "FastAPI", "LangChain","LLM", "PyTorch", "NLP"],
   },
   {
     id: "fullstack-dev",
     title: "Full-Stack Developer Resume",
     subtitle: "React · Node.js · Python · REST APIs",
-    filename: "sai_laxma_cv.docx",
+    filename: "SAI_LAXMA_Fullstack_Dev_CV.docx",
     downloadName: "Sai-Laxma-Reddy-FullStack-CV.docx",
     accentColor: "#CCFF00",
     shadowColor: "#000",
     icon: <Terminal className="w-6 h-6" />,
-    tags: ["React", "Node.js", "Express", "MongoDB", "SQL"],
+    tags: ["React","Nest.js", "Node.js", "Express", "MongoDB", "SQL"],
   },
 ];
 
@@ -72,39 +72,30 @@ const itemVariants = {
 
 export default function DownloadCVPage() {
   const [previewResume, setPreviewResume] = useState<ResumeCard | null>(null);
-  const [previewHtml, setPreviewHtml] = useState<string>("");
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
 
-  const loadPreview = useCallback(async (resume: ResumeCard) => {
+  // Render the .docx with its own styles/layout so it looks exactly like the Word file
+  useEffect(() => {
+    const container = previewRef.current;
+    if (!previewResume || !container) return;
+
     setPreviewLoading(true);
     setPreviewError(null);
-    setPreviewHtml("");
+    container.innerHTML = "";
 
-    try {
-      const response = await fetch(`/resumes/${resume.filename}`);
-      if (!response.ok) throw new Error("Failed to fetch resume file");
-
-      const arrayBuffer = await response.arrayBuffer();
-      const result = await mammoth.convertToHtml({ arrayBuffer });
-      setPreviewHtml(result.value);
-    } catch (err) {
-      setPreviewError(
-        err instanceof Error ? err.message : "Failed to load preview"
-      );
-    } finally {
-      setPreviewLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (previewResume) {
-      loadPreview(previewResume);
-    } else {
-      setPreviewHtml("");
-      setPreviewError(null);
-    }
-  }, [previewResume, loadPreview]);
+    fetch(`/resumes/${previewResume.filename}`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch resume file");
+        return response.blob();
+      })
+      .then((blob) => renderAsync(blob, container))
+      .catch((err) =>
+        setPreviewError(err instanceof Error ? err.message : "Failed to load preview")
+      )
+      .finally(() => setPreviewLoading(false));
+  }, [previewResume]);
 
   return (
     <div className="min-h-screen bg-[#F5F1E8] text-[#1A1A1A] font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-[#1A1A1A]">
@@ -298,7 +289,7 @@ export default function DownloadCVPage() {
         </motion.div>
       </main>
 
-      {/* Preview Modal — renders .docx as HTML via mammoth.js */}
+      {/* Preview Modal — renders .docx as-is via docx-preview */}
       {previewResume && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -357,7 +348,7 @@ export default function DownloadCVPage() {
               </div>
             </div>
 
-            {/* Preview Content — rendered HTML from mammoth.js */}
+            {/* Preview Content — the Word document, rendered page by page */}
             <div className="flex-1 overflow-auto bg-white">
               {previewLoading && (
                 <div className="flex flex-col items-center justify-center h-full gap-4">
@@ -390,12 +381,8 @@ export default function DownloadCVPage() {
                 </div>
               )}
 
-              {!previewLoading && !previewError && previewHtml && (
-                <div
-                  className="docx-preview p-8 sm:p-12 max-w-4xl mx-auto"
-                  dangerouslySetInnerHTML={{ __html: previewHtml }}
-                />
-              )}
+              <div ref={previewRef} hidden={previewLoading || !!previewError} />
+
             </div>
           </motion.div>
         </motion.div>

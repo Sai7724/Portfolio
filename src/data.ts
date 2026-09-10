@@ -145,6 +145,21 @@ export const projectsData: ProjectItem[] = [
     ],
     liveUrl: "https://peoplecounter.demo",
     githubUrl: "https://github.com/Sai7724/people-counter-app"
+  },{
+    id: "proj-LennysRagAssistant",
+    title: "Lenny's product Stratergist Rag Assistant",
+    description: "An AI-powered product and growth strategy assistant that transforms 200+ hours of podcast transcripts into an interactive knowledge base. Users can ask product, startup, and growth questions in natural language and receive context-aware, grounded answers with source citations.",
+    tag: {
+      label: "RAG Asistant",
+      icon: "brain",
+      color: "#3dffce"
+    },
+    period: "Project",
+    tech: ["Next.js", "FastAPI", "Python", "PostgreSQL", "pgvector", "Ollama", "LLM", "Docker"],
+    details: [
+    ],
+    liveUrl: "https://lennys.demo",
+    githubUrl: "https://github.com/Sai7724/lennys-growth-rag-assistant"
   }
 ];
 
@@ -167,9 +182,11 @@ export const skillCategories: SkillCategory[] = [
       { name: "Django", level: 85 },
       { name: "FastAPI", level: 85 },
       { name: "LangChain", level: 75 },
-      { name: "LangGraph", level: 75 },
+      { name: "CrewAI", level: 75 },
       { name: "React.js", level: 85 },
+      { name: "Next.js", level: 85 },
       { name: "Node JS", level: 80 },
+      { name: "Nest.js", level: 80 },
       { name: "Express JS", level: 80 }
     ]
   },
@@ -215,9 +232,11 @@ export const certificationsData: Certification[] = [
   { name: "MCP - Model Context Protocol Certified", link: "#" },
   { name: "JavaScript Essentials", link: "https://certificates.ccbp.in/academy/javascript-essentials?id=KCFCTGHJVK" },
   { name: "JavaScript Dom", link: "https://certificates.ccbp.in/academy/dynamic-web-application?id=UFRGUIECLZ" },
+  { name: "React JS", link: "https://certificates.ccbp.in/academy/react-js?id=BDKKMHAADA" },
   { name: "Node JS", link: "https://certificates.ccbp.in/academy/node-js?id=DRLHITTTDI" },
   { name: "SQL", link: "https://certificates.ccbp.in/academy/introduction-to-databases?id=LLZCIBJOCP" },
   { name: "HTML/CSS", link: "https://certificates.ccbp.in/academy/static-website?id=QLWESMBVGI" },
-  { name: "Bootstrap Design & Flexbox", link: "https://certificates.ccbp.in/academy/build-your-own-responsive-website?id=IDHOLUPHTM" },
+  { name: "Bootstrap", link: "https://certificates.ccbp.in/academy/build-your-own-responsive-website?id=IDHOLUPHTM" },
+  { name: "FlexBox", link: "https://certificates.ccbp.in/academy/responsive-web-design-using-flexbox?id=BVCXLTILZX" },
   { name: "Modern UI/UX Principles", link: "https://www.udemy.com/certificate/UC-15a58b62-323c-4ea9-84b3-8580995ada1c/" }
 ];

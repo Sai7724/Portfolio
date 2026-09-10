@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExternalLink, Github, Sparkles, Code2, ShieldAlert, ArrowUpRight, Cpu, Bot, Eye } from "lucide-react";
+import { ExternalLink, Github, Sparkles, Code2, ShieldAlert, ArrowUpRight, Cpu, Bot, Eye, Brain } from "lucide-react";
 import { projectsData } from "../data";
 import ScrollReveal from "./ScrollReveal";
 
@@ -7,7 +7,8 @@ const projectTagIcons = {
   cpu: Cpu,
   "shield-alert": ShieldAlert,
   bot: Bot,
-  eye: Eye
+  eye: Eye,
+  brain: Brain
 };
 
 export default function Projects() {
