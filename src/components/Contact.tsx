@@ -79,7 +79,7 @@ export default function Contact() {
                 Education & <span className="underline decoration-[#CCFF00] decoration-wavy">Certifications</span>
               </h2>
               <p className="text-sm sm:text-base text-gray-700 font-sans leading-relaxed">
-                B.Tech in Computer Science & Engineering from <strong className="text-black font-extrabold">Dr. M.G.R. University, Chennai</strong> (Graduating 2026 | CGPA: 7.42). Check out my credential stickers:
+                B.Tech in Computer Science & Engineering from <strong className="text-black font-extrabold">Dr. M.G.R. University, Chennai</strong> (Graduating 2026 | CGPA: 7.6). Check out my credential stickers:
               </p>
             </div>
           </ScrollReveal>

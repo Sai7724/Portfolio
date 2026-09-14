@@ -238,5 +238,6 @@ export const certificationsData: Certification[] = [
   { name: "HTML/CSS", link: "https://certificates.ccbp.in/academy/static-website?id=QLWESMBVGI" },
   { name: "Bootstrap", link: "https://certificates.ccbp.in/academy/build-your-own-responsive-website?id=IDHOLUPHTM" },
   { name: "FlexBox", link: "https://certificates.ccbp.in/academy/responsive-web-design-using-flexbox?id=BVCXLTILZX" },
-  { name: "Modern UI/UX Principles", link: "https://www.udemy.com/certificate/UC-15a58b62-323c-4ea9-84b3-8580995ada1c/" }
+  { name: "Modern UI/UX Principles", link: "https://www.udemy.com/certificate/UC-15a58b62-323c-4ea9-84b3-8580995ada1c/" },
+  { name: "Git/Github", link: "https://certificates.ccbp.in/academy/developer-foundations?id=CKGBCVZTGB" }
 ];

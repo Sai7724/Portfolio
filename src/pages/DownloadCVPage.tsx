@@ -70,6 +70,19 @@ const itemVariants = {
   },
 };
 
+// Word draws one bottom border for a run of consecutive paragraphs with identical
+// borders (e.g. blank lines before a heading); docx-preview draws one per paragraph.
+function mergeParagraphBorders(root: HTMLElement) {
+  root.querySelectorAll("p").forEach((p) => {
+    const next = p.nextElementSibling;
+    if (!(next instanceof HTMLParagraphElement)) return;
+    const style = getComputedStyle(p);
+    if (parseFloat(style.borderBottomWidth) > 0 && style.borderBottom === getComputedStyle(next).borderBottom) {
+      p.style.borderBottom = "none";
+    }
+  });
+}
+
 export default function DownloadCVPage() {
   const [previewResume, setPreviewResume] = useState<ResumeCard | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
@@ -91,6 +104,7 @@ export default function DownloadCVPage() {
         return response.blob();
       })
       .then((blob) => renderAsync(blob, container))
+      .then(() => mergeParagraphBorders(container))
       .catch((err) =>
         setPreviewError(err instanceof Error ? err.message : "Failed to load preview")
       )
